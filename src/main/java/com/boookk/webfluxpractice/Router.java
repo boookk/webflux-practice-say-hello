@@ -14,8 +14,9 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
 public class Router {
 
     @Bean
-    public RouterFunction<ServerResponse> router(Handler handler) {
-        return RouterFunctions
-                .route(GET("/hello").and(accept(MediaType.APPLICATION_JSON)), handler::hello);
+    public RouterFunction<ServerResponse> route(Handler handler) {
+        return RouterFunctions.route()
+                .GET("/hello", accept(MediaType.APPLICATION_JSON), handler::hello)
+                .build();
     }
 }
